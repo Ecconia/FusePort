@@ -21,7 +21,7 @@ back: (aliases: ret return)
 
 Features:
 - Pos supports relational
-- World boudaries
+- World boundaries
 - Player filter (hide them)
 - Requests last 2 minutes
 - Tp pos's are floored
