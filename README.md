@@ -13,6 +13,8 @@ A small but hopefully growing teleportation plugin for Bukkit.
 - Setting: Allow bypass or block requests completly, as default and per player
 - Permissions: In a way muli-level bypass permissions, for direct teleports
 - Abort teleportation by move/clicking + timer
+- I18n
+- Command name change
 
 ## Possible command setup:
 - /tp - Teleport to a player. If insufficient permissions, request to teleport to him
