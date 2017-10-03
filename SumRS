@@ -1,0 +1,31 @@
+tp <player> | <player> <player> | [player] <x> <y> <z>: (aliases: teleport tpa)
+	<player>:
+		- 'call' if perms issue
+		- /tpd
+	<player> <player>:
+		- 'tp <player>' if first arg is player
+		- /tpd
+	[world] <x> <y> <z>:
+		- /tpp
+
+call <player>:
+	- 'tp' if perms issue
+	- /tpr
+
+bring <player>:
+	- /tphd if perms
+	- /tpa
+
+back: (aliases: ret return)
+- /back
+
+Features:
+- Pos supports relational
+- World boudaries
+- Player filter (hide them)
+- Requests last 2 minutes
+- Tp pos's are floored
+- Its possible to use , seperation in /tp
+- Checks if player online when event get triggered
+- Whitelist of world where return positions get stored
+- 5 positions stored cycle back
