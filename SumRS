@@ -1,23 +1,23 @@
 tp <player> | <player> <player> | [player] <x> <y> <z>: (aliases: teleport tpa)
 	<player>:
 		- 'call' if perms issue
-		- /tpd
+		- teleport to the player
 	<player> <player>:
 		- 'tp <player>' if first arg is player
-		- /tpd
+		- teleport player to player
 	[world] <x> <y> <z>:
-		- /tpp
+		- teleport player to position
 
 call <player>:
 	- 'tp' if perms issue
-	- /tpr
+	- request to teleport to player
 
 bring <player>:
-	- /tphd if perms
-	- /tpa
+	- if permissions: teleport player 'here'
+	- accept request from player (he teleports to 'here')
 
 back: (aliases: ret return)
-- /back
+- teleports player to latest position from his location queue
 
 Features:
 - Pos supports relational
