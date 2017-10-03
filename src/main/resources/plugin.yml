@@ -1,0 +1,17 @@
+main: de.ecconia.bukkit.plugin.fuseport.FusePortPlugin
+name: FusePort
+version: ${version}
+
+author: Ecconia
+description: A teleportation plugin which combines some good features and messes up the rest.
+
+commands:
+  fuseport:
+  tp:
+  tpr:
+  tph:
+  tphr:
+  tpp:
+  tpa:
+  tpd:
+  tpb:
