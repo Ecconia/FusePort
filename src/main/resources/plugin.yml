@@ -7,11 +7,16 @@ description: A teleportation plugin which combines some good features and messes
 
 commands:
   fuseport:
+    description: Main command of this plugin.
   tp:
-  tpr:
+    description: "Teleport to a player or a player to another player. Arguments: -request or -direct"
   tph:
-  tphr:
+    description: "Teleport a player to you. Arguments: -request or -direct"
   tpp:
+    description: Teleport to a position
   tpa:
+    description: Accept a pending request
   tpd:
+    description: Deny a pending request
   tpb:
+    description: "Jump back to last position. Arguments: -save and -flush"
