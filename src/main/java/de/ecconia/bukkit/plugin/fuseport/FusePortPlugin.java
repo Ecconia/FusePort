@@ -3,13 +3,30 @@ package de.ecconia.bukkit.plugin.fuseport;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.ecconia.bukkit.plugin.fuseport.command.commands.TeleportExec;
+import de.ecconia.bukkit.plugin.fuseport.modules.FeedbackModul;
+import de.ecconia.bukkit.plugin.fuseport.modules.PlayerCache;
 
 public class FusePortPlugin extends JavaPlugin
-{	
+{
+	private PlayerCache playerCache;
+	private FeedbackModul feedbackModul;
+	
 	@Override
 	public void onEnable()
 	{
-		getCommand("tp").setExecutor(new TeleportExec());
+		playerCache = new PlayerCache(this);
+		feedbackModul = new FeedbackModul();
+		
+		getCommand("tp").setExecutor(new TeleportExec(this));
 	}
 	
+	public PlayerCache getPlayerCache()
+	{
+		return playerCache;
+	}
+	
+	public FeedbackModul getFeedbackModul()
+	{
+		return feedbackModul;
+	}
 }

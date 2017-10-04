@@ -11,27 +11,35 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
+import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
+
 public abstract class FPCommand implements CommandExecutor
 {
 	private Set<String> allowedFlags;
 	private boolean allowShortFlags;
+	private FusePortPlugin plugin;
+	
+	public FPCommand(FusePortPlugin plugin)
+	{
+		this.plugin = plugin;
+	}
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
-		//TODO: Remove: Test for Feedback framwork
-		sender.sendMessage(sender.getName());
+		FPPlayer player = plugin.getPlayerCache().getPlayerFromSender(sender);
 		
 		SortedCommand sCommand = new SortedCommand(args, allowedFlags, allowShortFlags);
 		
-		if(checkFlags(sCommand, sender))
+		if(checkFlags(sCommand, player))
 		{
-			onCommand(sCommand, sender);			
+			onCommand(sCommand, player);			
 		}
 		
 		return true;
 	}
 	
-	private boolean checkFlags(SortedCommand sCommand, CommandSender sender)
+	private boolean checkFlags(SortedCommand sCommand, FPPlayer player)
 	{
 		if(allowedFlags != null)
 		{
@@ -40,20 +48,13 @@ public abstract class FPCommand implements CommandExecutor
 			{
 				return true;
 			}
-			//TODO: Feedback Framework
-			StringBuilder s = new StringBuilder("Not required flags: ");
-			for(String flag : removedFlags)
-			{
-				s.append(flag);
-				s.append(", ");
-			}
-			sender.sendMessage(s.toString());
+			player.feedback("feedback.command.parsing.removedflags").a(removedFlags).send();
 			return false;
 		}
 		return true;
 	}
 	
-	protected abstract void onCommand(SortedCommand sCommand, CommandSender sender);
+	protected abstract void onCommand(SortedCommand sCommand, FPPlayer sender);
 	
 	protected void setAllowedFlags(Set<String> allowedFlags)
 	{
