@@ -2,6 +2,7 @@ package de.ecconia.bukkit.plugin.fuseport.modules;
 
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 public class FeedbackModul 
@@ -27,9 +28,15 @@ public class FeedbackModul
 		{
 			firstArg = true;
 			this.sender = sender;
-			feedback = "[FusePort] " + messageKey + "{";
+			feedback = "[" + ChatColor.GOLD + "FusePort" + ChatColor.WHITE + "] " + ChatColor.GRAY + messageKey + ChatColor.GRAY + "{";
 		}
 		
+		public void send()
+		{
+			feedback += "}";
+			sender.sendMessage(feedback);
+		}
+
 		private void addSeperator()
 		{
 			if(!firstArg)
@@ -46,7 +53,7 @@ public class FeedbackModul
 		{
 			addSeperator();
 			
-			feedback += "\"" + a + "\"";
+			feedback += "\"" + ChatColor.GOLD + a + ChatColor.GRAY + "\"";
 			
 			return this;
 		}
@@ -63,7 +70,7 @@ public class FeedbackModul
 				for(int i = 1; i < list.size(); i++)
 				{
 					addSeperator();
-					feedback += list.get(i);
+					feedback += ChatColor.GOLD + list.get(i) + ChatColor.GRAY;
 				}
 			}
 			
@@ -72,10 +79,13 @@ public class FeedbackModul
 			return this;
 		}
 
-		public void send()
+		public Feedback a(int argAmount)
 		{
-			feedback += "}";
-			sender.sendMessage(feedback);
+			addSeperator();
+			
+			feedback += ChatColor.GOLD + String.valueOf(argAmount) + ChatColor.GRAY;
+			
+			return this;
 		}
 	}
 }
