@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
@@ -21,23 +22,48 @@ public class PlayerCache
 	
 	public FPPlayer getPlayerFromSender(CommandSender sender)
 	{
-		String playerName = sender.getName();
-		FPPlayer player = players.get(playerName);
+		String playername = sender.getName();
 		
+		FPPlayer player = players.get(playername);
 		if(player == null)
 		{
-			player = newPlayer(playerName);
+			player = newPlayer(playername);
 		}
-		
-		player.updateCommandSender(sender);
 		
 		return player;
 	}
 	
-	private FPPlayer newPlayer(String playerName)
+	public FPPlayer getPlayerFromName(String playername)
 	{
-		FPPlayer player = new FPPlayer(plugin);
-		players.put(playerName, player);
+		//TODO: Hide players here.
+		//TODO: Autocomplete poor playernames here.
+		
+		FPPlayer player = players.get(playername);
+		if(player == null)
+		{
+			player = newPlayer(playername);
+		}
+		
 		return player;
+	}
+	
+	private FPPlayer newPlayer(String playername)
+	{
+		Player mcPlayer = getMCPlayerFromName(playername);
+		if(mcPlayer == null)
+		{
+			return null;
+		}
+		
+		FPPlayer player = new FPPlayer(plugin, mcPlayer);
+		players.put(playername, player);
+		
+		return player;
+	}
+	
+	@SuppressWarnings("deprecation")
+	private Player getMCPlayerFromName(String playername)
+	{
+		return plugin.getServer().getPlayer(playername);
 	}
 }

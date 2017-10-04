@@ -1,26 +1,22 @@
 package de.ecconia.bukkit.plugin.fuseport;
 
-import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import de.ecconia.bukkit.plugin.fuseport.modules.FeedbackModul.Feedback;
 
 public class FPPlayer
 {
 	private FusePortPlugin plugin;
-	private CommandSender sender;
+	private Player player;
 	
-	public FPPlayer(FusePortPlugin plugin)
+	public FPPlayer(FusePortPlugin plugin, Player player)
 	{
 		this.plugin = plugin;
+		this.player = player;
 	}
 	
 	public Feedback feedback(String messageKey)
 	{
-		return plugin.getFeedbackModul().feedbackFromMessage(messageKey, sender);
-	}
-	
-	public void updateCommandSender(CommandSender sender)
-	{
-		this.sender = sender;
+		return plugin.getFeedbackModul().feedbackFromMessage(messageKey, player);
 	}
 }
