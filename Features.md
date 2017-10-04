@@ -10,7 +10,7 @@
 - Config: White/Blacklist for worlds to save...
 - Config: Amount of locations to store
 - Config: Listen to teleport event
-- Store all teleports caused by FP
+- Store all teleports caused by FusePort
 - Alternative to worldblocks would be worldfiltering (to investigate)
 
 ## Request System:

@@ -31,7 +31,7 @@ A small but hopefully growing teleportation plugin for Bukkit.
 Since no other plugin known has all these features combined.
 There are at least two specific servers (with custom solutions) which would gain by using this plugin.
 
-##Internal (ToDo, Notes):
+## Internal (ToDo, Notes):
 
 Which features will be improved on these two servers:
 - Better commands (chat interface), also increase command consistence
