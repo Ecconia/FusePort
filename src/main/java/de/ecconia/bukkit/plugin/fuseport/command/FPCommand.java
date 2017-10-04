@@ -1,8 +1,10 @@
 package de.ecconia.bukkit.plugin.fuseport.command;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.bukkit.command.Command;
@@ -19,7 +21,7 @@ public abstract class FPCommand implements CommandExecutor
 		//TODO: Remove: Test for Feedback framwork
 		sender.sendMessage(sender.getName());
 		
-		SortedCommand sCommand = new SortedCommand(args);
+		SortedCommand sCommand = new SortedCommand(args, allowedFlags, allowShortFlags);
 		
 		if(checkFlags(sCommand, sender))
 		{
@@ -33,14 +35,14 @@ public abstract class FPCommand implements CommandExecutor
 	{
 		if(allowedFlags != null)
 		{
-			List<String> uselessFlags = sCommand.getUselessFlags(allowedFlags, allowShortFlags);
-			if(uselessFlags.isEmpty())
+			List<String> removedFlags = sCommand.getRemovedFlags();
+			if(removedFlags.isEmpty())
 			{
 				return true;
 			}
 			//TODO: Feedback Framework
-			StringBuilder s = new StringBuilder("UselessFlags: ");
-			for(String flag : uselessFlags)
+			StringBuilder s = new StringBuilder("Not required flags: ");
+			for(String flag : removedFlags)
 			{
 				s.append(flag);
 				s.append(", ");
@@ -68,11 +70,22 @@ public abstract class FPCommand implements CommandExecutor
 	{
 		private Set<String> flags;
 		private List<String> arguments;
+		private ArrayList<String> removedFlags;
 		
-		public SortedCommand(String[] args)
+		public SortedCommand(String[] args, Set<String> allowedFlags, boolean allowShortFlags)
 		{
 			flags = new HashSet<>();
 			arguments = new ArrayList<>();
+			removedFlags = new ArrayList<>();
+			
+			Map<String, String> shortAllowedFlags = new HashMap<>();
+			if(allowShortFlags)
+			{
+				for(String flag : allowedFlags)
+				{
+					shortAllowedFlags.put(flag.substring(0, 1), flag);
+				}
+			}
 			
 			for(String arg : args)
 			{
@@ -87,42 +100,30 @@ public abstract class FPCommand implements CommandExecutor
 					{
 						arg = "-";
 					}
-					flags.add(arg);
+					
+					if(allowedFlags.contains(arg))
+					{
+						flags.add(arg);
+						continue;
+					}
+					if(allowShortFlags && arg.length() == 1 && shortAllowedFlags.containsKey(arg))
+					{
+						flags.add(shortAllowedFlags.get(arg));
+						continue;
+					}
+					removedFlags.add(arg);
 					continue;
 				}
 				arguments.add(arg);
 			}
 		}
 		
-		public List<String> getUselessFlags(Set<String> allowedFlags, boolean allowShortFlags)
+		public List<String> getRemovedFlags()
 		{
-			Set<Character> shortAllowedFlags = new HashSet<>();
-			if(allowShortFlags)
-			{
-				for(String flag : allowedFlags)
-				{
-					shortAllowedFlags.add(flag.charAt(0));
-				}
-			}
-			
-			List<String> uselessFlags = new ArrayList<>();
-			for(String flag : flags)
-			{
-				if(!(allowedFlags.contains(flag) || (allowShortFlags && flag.length() == 1 && shortAllowedFlags.contains(flag.charAt(0)))))
-				{
-					uselessFlags.add(flag);
-				}
-			}
-			
-			return uselessFlags;
+			return removedFlags;
 		}
 		
 		public boolean isSet(String flag)
-		{
-			return isSet(flag, true);
-		}
-		
-		public boolean isSet(String flag, boolean firstCharCheck)
 		{
 			return flags.contains(flag);
 		}
@@ -147,19 +148,29 @@ public abstract class FPCommand implements CommandExecutor
 			StringBuilder b = new StringBuilder(getClass().getSimpleName());
 			b.append('{');
 			
+			b.append("Flags: [");
 			for(String flag : flags)
 			{
 				b.append(flag);
 				b.append(", ");
 			}
+			b.append("], ");
 			
-			b.append('|');
+			b.append("RemovedFlags: [");
+			for(String arg : removedFlags)
+			{
+				b.append(arg);
+				b.append(", ");
+			}
+			b.append("], ");
 			
+			b.append("Args: [");
 			for(String arg : arguments)
 			{
 				b.append(arg);
 				b.append(", ");
 			}
+			b.append(']');
 			
 			b.append('}');
 			return b.toString();
