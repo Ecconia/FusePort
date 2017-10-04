@@ -33,6 +33,7 @@ public class PlayerCache
 		return player;
 	}
 	
+	//TODO: add the searching Player for later checks.
 	public FPPlayer getPlayerFromName(String playername)
 	{
 		//TODO: Hide players here.

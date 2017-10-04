@@ -17,13 +17,16 @@ import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 public abstract class FPCommand implements CommandExecutor
 {
 	private Set<String> allowedFlags;
+	//TODO: Only true tested. Test this!
 	private boolean allowShortFlags;
-	private FusePortPlugin plugin;
+	protected FusePortPlugin plugin;
 	
 	public FPCommand(FusePortPlugin plugin)
 	{
 		this.plugin = plugin;
 	}
+	
+	protected abstract void onCommand(SortedCommand sCommand, FPPlayer sender);
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
@@ -53,8 +56,6 @@ public abstract class FPCommand implements CommandExecutor
 		}
 		return true;
 	}
-	
-	protected abstract void onCommand(SortedCommand sCommand, FPPlayer sender);
 	
 	protected void setAllowedFlags(Set<String> allowedFlags)
 	{

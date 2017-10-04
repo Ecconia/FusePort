@@ -19,4 +19,21 @@ public class FPPlayer
 	{
 		return plugin.getFeedbackModul().feedbackFromMessage(messageKey, player);
 	}
+	
+	public String getName()
+	{
+		return player.getName();
+	}
+	
+	public FPPlayer getPlayer(String playername)
+	{
+		FPPlayer playerQuery = plugin.getPlayerCache().getPlayerFromName(playername);
+		
+		if(playerQuery == null)
+		{
+			feedback("feedback.command.parsing.playernotonline").a(playername).send();
+		}
+		
+		return playerQuery;
+	}
 }
