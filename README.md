@@ -2,6 +2,7 @@
 A small but hopefully growing teleportation plugin for Bukkit.
 
 Last stable build: None yet...
+
 Builds: check latest Vx.x.x Tag.
 
 ## Features:
@@ -21,6 +22,7 @@ Normal:
 - Teleport to position
 - Go back to your previous position
 - Abort teleportation by move/clicking + timer
+
 Important:
 - Setting: Allow bypass or block requests completly, as default and per player
 - Permissions: In a way muli-level bypass permissions, for direct teleports
@@ -41,6 +43,7 @@ Important:
 ## Install:
 - Clone repository
 - use 'mvn install' in the project
+
 For developing in eclipse:
 - 'mvn eclipse:clean'
 - 'mvn eclipse:eclipse'
@@ -56,15 +59,15 @@ Which features will be improved on these two servers:
 
 Other:
 On most servers the command 'tpa' requests to teleport to a player. But most player have no clue what the 'a' stands for. In german there is the word 'Anfrage' which basically means 'request', germans can answer the question. But most english ones don't know a pretty word. Its either "If you use this command the other have to accept" or 'access' but nothing sounds logically. Some server gladly support the usage of 'tpr'. 
+
 -> We will use the 'tpa' command for 'teleport accept', which is a big different to most teleportation systems.
 
 Contribute:
 I (Ecconia) am currently working alone on the project, taking part? Sure :)
+
 I have not much experience with PR's thou, for this stage of the project where nothing is completly fixed its probably better if you contact me directly via Skype (Username: Ecconia) or Email (below). For the beginning I will likly only accept features and ideas. If its something code related, feel free to contact me, I will consider it.
 
 PS: If you know a plugin which provides all these features, let 'me' know :)
 
 ### Contact:
-If possible on github. 
-If something special:
-	Email: fuseport@ecconia.com
+Email: fuseport@ecconia.com
