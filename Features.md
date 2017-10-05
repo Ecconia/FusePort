@@ -50,6 +50,7 @@
 - Config: Default deny/apply/prompt
 - Setting per player and per level
 - Default deny/apply or prompt
+- Additional mode: deny silent (sends pretends to send request)
 
 ## Command name system:
 - Config: Overwrites for command names
@@ -67,3 +68,4 @@
 - Exact teleport position (yeah!)
 - Player filtering, hide them (API...)
 - World limits (yeah!)
+- Request for all kind of tp's (maybe?)
