@@ -1,13 +1,13 @@
-package de.ecconia.bukkit.plugin.fuseport.modules.feedback;
+package de.ecconia.bukkit.plugin.fuseport.parts.feedback;
 
 import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-public class FeedbackModule 
+public class FeedbackCreator 
 {
-	public FeedbackModule()
+	public FeedbackCreator()
 	{
 	}
 	

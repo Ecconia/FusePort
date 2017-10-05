@@ -3,21 +3,21 @@ package de.ecconia.bukkit.plugin.fuseport;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.ecconia.bukkit.plugin.fuseport.command.commands.TeleportExec;
-import de.ecconia.bukkit.plugin.fuseport.modules.ModuleHolder;
+import de.ecconia.bukkit.plugin.fuseport.parts.PartHolder;
 
 public class FusePortPlugin extends JavaPlugin
 {
-	private ModuleHolder modHolder;
+	private PartHolder partHolder;
 	@Override
 	public void onEnable()
 	{
-		modHolder = new ModuleHolder(this);
+		partHolder = new PartHolder(this);
 		
 		getCommand("tp").setExecutor(new TeleportExec(this));
 	}
 	
-	public ModuleHolder getModHolder()
+	public PartHolder getPartHolder()
 	{
-		return modHolder;
+		return partHolder;
 	}
 }
