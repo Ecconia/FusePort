@@ -30,13 +30,13 @@ public abstract class FPCommand implements CommandExecutor
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
-		FPPlayer player = plugin.getModHolder().getPlayerCache().getPlayerFromSender(sender);
+		FPPlayer player = plugin.getPartHolder().getPlayerCache().getPlayerFromSender(sender);
 		
 		SortedCommand sCommand = new SortedCommand(args, allowedFlags, allowShortFlags);
 		
 		if(checkFlags(sCommand, player))
 		{
-			onCommand(sCommand, player);			
+			onCommand(sCommand, player);
 		}
 		
 		return true;

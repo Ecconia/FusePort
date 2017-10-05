@@ -1,4 +1,4 @@
-package de.ecconia.bukkit.plugin.fuseport.modules.teleport;
+package de.ecconia.bukkit.plugin.fuseport.parts.teleport;
 
 import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
 
