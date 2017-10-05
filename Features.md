@@ -31,6 +31,7 @@
 - Each code has set keywords <player1> <playerTo> which will be replaced with information
 - Depending on the complexity of information, adding framework to auto-format chat output (to investigate)
 - Chat on-click (JSON text)
+- MessageKey tree can have textes for knots, which can be overwritten by lower knots, or leafes
 
 ## Levels:
 - Level per player
