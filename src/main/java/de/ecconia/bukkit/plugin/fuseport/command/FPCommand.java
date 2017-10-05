@@ -24,6 +24,7 @@ public abstract class FPCommand implements CommandExecutor
 	public FPCommand(FusePortPlugin plugin)
 	{
 		this.plugin = plugin;
+		allowedFlags = new HashSet<>();
 	}
 	
 	protected abstract void onCommand(SortedCommand sCommand, FPPlayer sender);
@@ -44,17 +45,13 @@ public abstract class FPCommand implements CommandExecutor
 	
 	private boolean checkFlags(SortedCommand sCommand, FPPlayer player)
 	{
-		if(allowedFlags != null)
+		List<String> removedFlags = sCommand.getRemovedFlags();
+		if(removedFlags.isEmpty())
 		{
-			List<String> removedFlags = sCommand.getRemovedFlags();
-			if(removedFlags.isEmpty())
-			{
-				return true;
-			}
-			player.feedback("feedback.command.parsing.removedflags").a(removedFlags).send();
-			return false;
+			return true;
 		}
-		return true;
+		player.feedback("feedback.command.parsing.removedflags").a(removedFlags).send();
+		return false;
 	}
 	
 	protected void setAllowedFlags(Set<String> allowedFlags)
