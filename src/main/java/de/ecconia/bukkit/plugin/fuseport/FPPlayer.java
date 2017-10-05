@@ -2,7 +2,7 @@ package de.ecconia.bukkit.plugin.fuseport;
 
 import org.bukkit.entity.Player;
 
-import de.ecconia.bukkit.plugin.fuseport.modules.FeedbackModule.Feedback;
+import de.ecconia.bukkit.plugin.fuseport.modules.feedback.FeedbackModule.Feedback;
 
 public class FPPlayer
 {
@@ -17,7 +17,7 @@ public class FPPlayer
 	
 	public Feedback feedback(String messageKey)
 	{
-		return plugin.getFeedbackModul().feedbackFromMessage(messageKey, player);
+		return plugin.getModHolder().getFeedbackModul().feedbackFromMessage(messageKey, player);
 	}
 	
 	public String getName()
@@ -27,7 +27,7 @@ public class FPPlayer
 	
 	public FPPlayer getPlayer(String playername)
 	{
-		FPPlayer playerQuery = plugin.getPlayerCache().getPlayerFromName(playername);
+		FPPlayer playerQuery = plugin.getModHolder().getPlayerCache().getPlayerFromName(playername);
 		
 		if(playerQuery == null)
 		{

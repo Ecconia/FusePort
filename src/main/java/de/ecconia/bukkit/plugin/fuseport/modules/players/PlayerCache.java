@@ -1,4 +1,4 @@
-package de.ecconia.bukkit.plugin.fuseport.modules;
+package de.ecconia.bukkit.plugin.fuseport.modules.players;
 
 import java.util.HashMap;
 import java.util.Map;
