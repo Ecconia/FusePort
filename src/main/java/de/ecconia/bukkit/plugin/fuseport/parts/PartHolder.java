@@ -28,7 +28,7 @@ public class PartHolder
 		return playerCache;
 	}
 	
-	public Teleporter getTpCommandHandler()
+	public Teleporter getTeleporter()
 	{
 		return teleport;
 	}
