@@ -20,6 +20,7 @@ public class FeedbackModul
 	public class Feedback
 	{
 		//TODO: Give real feedback and not some dump
+		//TODO: Make Feedback an interface, and put the code here in SimpleFeedback
 		private CommandSender sender;
 		private String feedback;
 		private boolean firstArg;

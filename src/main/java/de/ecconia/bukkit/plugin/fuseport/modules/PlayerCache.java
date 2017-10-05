@@ -11,6 +11,7 @@ import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 
 public class PlayerCache
 {
+	//TODO: Disconnect Event to clean up the players... And prevent errors
 	private Map<String, FPPlayer> players;
 	private FusePortPlugin plugin;
 	
