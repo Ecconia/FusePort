@@ -5,9 +5,9 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-public class FeedbackModul 
+public class FeedbackModule 
 {
-	public FeedbackModul()
+	public FeedbackModule()
 	{
 	}
 	

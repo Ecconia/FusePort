@@ -2,7 +2,7 @@ package de.ecconia.bukkit.plugin.fuseport;
 
 import org.bukkit.entity.Player;
 
-import de.ecconia.bukkit.plugin.fuseport.modules.FeedbackModul.Feedback;
+import de.ecconia.bukkit.plugin.fuseport.modules.FeedbackModule.Feedback;
 
 public class FPPlayer
 {
