@@ -38,6 +38,7 @@
 - Upper level can direct tp to the lower ones
 
 ## Command handler:
+- Config: interactive chat
 - Command: Teleport to player
 - Command: Teleport player to you
 - Command note: '-force' to not send a request, '-request' to only send a request
@@ -46,6 +47,8 @@
 - Command: Teleport someone else
 - Command note: Positional teleport should support relative positions
 - Without any argument you will receive help
+- Spam protection
+- Disable playersettings
 
 ## Default answer setting:
 - Config: Default deny/apply/prompt
