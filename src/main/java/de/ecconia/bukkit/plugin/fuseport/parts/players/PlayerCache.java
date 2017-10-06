@@ -68,4 +68,9 @@ public class PlayerCache
 	{
 		return plugin.getServer().getPlayer(playername);
 	}
+
+	public void disconnect(String playername)
+	{
+		players.remove(playername);
+	}
 }
