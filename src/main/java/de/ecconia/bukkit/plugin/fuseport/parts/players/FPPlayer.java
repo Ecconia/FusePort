@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 import de.ecconia.bukkit.plugin.fuseport.RequestAnswer;
-import de.ecconia.bukkit.plugin.fuseport.parts.feedback.FeedbackCreator.Feedback;
+import de.ecconia.bukkit.plugin.fuseport.parts.feedback.Feedback;
 
 public class FPPlayer
 {
@@ -25,7 +25,7 @@ public class FPPlayer
 	
 	public Feedback feedback(String messageKey)
 	{
-		return plugin.getPartHolder().getFeedbackCreator().feedbackFromMessage(messageKey, mcPlayer);
+		return plugin.getPartHolder().getFeedbackCreator().feedbackFromMessage(messageKey, this);
 	}
 	
 	public String getName()
