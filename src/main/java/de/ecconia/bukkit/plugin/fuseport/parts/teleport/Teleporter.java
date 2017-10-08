@@ -1,6 +1,6 @@
 package de.ecconia.bukkit.plugin.fuseport.parts.teleport;
 
-import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
+import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 public class Teleporter
 {

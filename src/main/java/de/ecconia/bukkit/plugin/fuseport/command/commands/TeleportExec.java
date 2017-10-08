@@ -3,10 +3,10 @@ package de.ecconia.bukkit.plugin.fuseport.command.commands;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 import de.ecconia.bukkit.plugin.fuseport.RequestAnswer;
 import de.ecconia.bukkit.plugin.fuseport.command.FPCommand;
+import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 public class TeleportExec extends FPCommand
 {

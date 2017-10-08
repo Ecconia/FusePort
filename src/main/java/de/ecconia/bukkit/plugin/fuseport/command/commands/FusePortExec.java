@@ -1,9 +1,9 @@
 package de.ecconia.bukkit.plugin.fuseport.command.commands;
 
-import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 import de.ecconia.bukkit.plugin.fuseport.RequestAnswer;
 import de.ecconia.bukkit.plugin.fuseport.command.FPCommand;
+import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 //TODO: Subcommand framework...
 public class FusePortExec extends FPCommand

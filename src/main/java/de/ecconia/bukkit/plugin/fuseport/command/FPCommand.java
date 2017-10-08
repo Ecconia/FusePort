@@ -11,8 +11,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
+import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 public abstract class FPCommand implements CommandExecutor
 {
