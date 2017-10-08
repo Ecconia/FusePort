@@ -6,7 +6,6 @@ import java.util.Map;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.ecconia.bukkit.plugin.fuseport.FPPlayer;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 
 public class PlayerCache

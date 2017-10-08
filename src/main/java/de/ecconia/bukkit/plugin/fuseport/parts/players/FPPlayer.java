@@ -1,10 +1,12 @@
-package de.ecconia.bukkit.plugin.fuseport;
+package de.ecconia.bukkit.plugin.fuseport.parts.players;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.entity.Player;
 
+import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
+import de.ecconia.bukkit.plugin.fuseport.RequestAnswer;
 import de.ecconia.bukkit.plugin.fuseport.parts.feedback.FeedbackCreator.Feedback;
 
 public class FPPlayer
