@@ -1,8 +1,9 @@
 package de.ecconia.bukkit.plugin.fuseport;
 
-public enum RequestAnswer {
+public enum RequestAnswer
+{
 	PROMPT,
 	ACCEPT,
-	DENY,
-	SILENT_DENY
+	BLOCK,
+	IGNORE;
 }
