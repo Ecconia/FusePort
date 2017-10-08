@@ -54,7 +54,6 @@ public class TeleportExec extends FPCommand
 			{
 				//Wuuuhiii TP me!
 				plugin.getPartHolder().getTeleporter().teleportSenderToPlayer(sender, playerTpTo);
-				sender.feedback("feedback.command.exec.meToOther.accept.implementation404").a(sender.getName()).a(playerTpTo.getName()).send();
 				sender.feedback("feedback.command.exec.meToOther.accept").a(sender.getName()).a(playerTpTo.getName()).send();
 			}
 			else if(preferredAnswer == RequestAnswer.PROMPT)
@@ -63,7 +62,7 @@ public class TeleportExec extends FPCommand
 				sender.feedback("feedback.command.exec.meToOther.promt.implementation404").a(sender.getName()).a(playerTpTo.getName()).send();
 				sender.feedback("feedback.command.exec.meToOther.promt.send").a(sender.getName()).a(playerTpTo.getName()).send();
 			}
-			else if(preferredAnswer == RequestAnswer.DENY)
+			else if(preferredAnswer == RequestAnswer.BLOCK)
 			{
 				//No go home, you cannot to there.
 				sender.feedback("feedback.command.exec.meToOther.deny").a(sender.getName()).a(playerTpTo.getName()).send();
