@@ -3,6 +3,7 @@ package de.ecconia.bukkit.plugin.fuseport.parts;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 import de.ecconia.bukkit.plugin.fuseport.parts.feedback.FeedbackCreator;
 import de.ecconia.bukkit.plugin.fuseport.parts.players.PlayerCache;
+import de.ecconia.bukkit.plugin.fuseport.parts.response.RequestPart;
 import de.ecconia.bukkit.plugin.fuseport.parts.teleport.Teleporter;
 
 public class PartHolder
@@ -10,12 +11,14 @@ public class PartHolder
 	private PlayerCache playerCache;
 	private FeedbackCreator feedbackCreator;
 	private Teleporter teleport;
+	private RequestPart requestPart;
 	
 	public PartHolder(FusePortPlugin plugin)
 	{
 		playerCache = new PlayerCache(plugin);
 		feedbackCreator = new FeedbackCreator();
 		teleport = new Teleporter();
+		requestPart = new RequestPart();
 	}
 	
 	public FeedbackCreator getFeedbackCreator()
@@ -31,5 +34,10 @@ public class PartHolder
 	public Teleporter getTeleporter()
 	{
 		return teleport;
+	}
+	
+	public RequestPart getRequestPart()
+	{
+		return requestPart;
 	}
 }

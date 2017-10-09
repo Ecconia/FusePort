@@ -70,6 +70,10 @@ public class PlayerCache
 
 	public void disconnect(String playername)
 	{
-		players.remove(playername);
+		FPPlayer player = players.remove(playername);
+		if(player != null)
+		{
+			plugin.getPartHolder().getRequestPart().disconnected(player);
+		}
 	}
 }
