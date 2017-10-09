@@ -17,7 +17,7 @@ public class FPPlayer
 	
 	private Map<FPPlayer, RequestAnswer> playerRules = new HashMap<>();
 	
-	public FPPlayer(FusePortPlugin plugin, Player mcPlayer)
+	protected FPPlayer(FusePortPlugin plugin, Player mcPlayer)
 	{
 		this.plugin = plugin;
 		this.mcPlayer = mcPlayer;
