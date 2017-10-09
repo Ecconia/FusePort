@@ -5,6 +5,13 @@ import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 //TODO: Add methods to track all teleportations, to remove requests.
 public class RequestPart
 {
+	private RequestStorage requests;
+	
+	public RequestPart()
+	{
+		requests = new RequestStorage();
+	}
+	
 	public void sendTPRequest(FPPlayer from, FPPlayer to)
 	{
 		from.feedback("feedback.request.sendRequest.implementation404").a(from).a(to).send();
