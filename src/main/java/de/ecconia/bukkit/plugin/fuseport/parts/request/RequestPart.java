@@ -1,4 +1,4 @@
-package de.ecconia.bukkit.plugin.fuseport.parts.response;
+package de.ecconia.bukkit.plugin.fuseport.parts.request;
 
 import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
