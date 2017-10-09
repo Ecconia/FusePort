@@ -54,24 +54,24 @@ public class TeleportExec extends FPCommand
 			{
 				//Wuuuhiii TP me!
 				plugin.getPartHolder().getTeleporter().teleportSenderToPlayer(sender, playerTpTo);
-				sender.feedback("feedback.command.exec.meToOther.accept").a(sender.getName()).a(playerTpTo.getName()).send();
+				sender.feedback("feedback.command.exec.meToOther.accept").a(sender).a(playerTpTo).send();
 			}
 			else if(preferredAnswer == RequestAnswer.PROMPT)
 			{
 				//Derp implement Requests!
 				sender.feedback("feedback.command.exec.meToOther.promt.implementation404").a(sender.getName()).a(playerTpTo.getName()).send();
-				sender.feedback("feedback.command.exec.meToOther.promt.send").a(sender.getName()).a(playerTpTo.getName()).send();
+				sender.feedback("feedback.command.exec.meToOther.promt.send").a(sender).a(playerTpTo).send();
 			}
 			else if(preferredAnswer == RequestAnswer.BLOCK)
 			{
 				//No go home, you cannot to there.
-				sender.feedback("feedback.command.exec.meToOther.deny").a(sender.getName()).a(playerTpTo.getName()).send();
+				sender.feedback("feedback.command.exec.meToOther.deny").a(sender).a(playerTpTo).send();
 			}
 			else
 			{
 				//Pretend request
-				sender.feedback("feedback.command.exec.meToOther.promt.implementation404").a(sender.getName()).a(playerTpTo.getName()).send();
-				sender.feedback("feedback.command.exec.meToOther.promt.sendfake").a(sender.getName()).a(playerTpTo.getName()).send();
+				sender.feedback("feedback.command.exec.meToOther.promt.implementation404").a(sender).a(playerTpTo).send();
+				sender.feedback("feedback.command.exec.meToOther.promt.sendfake").a(sender).a(playerTpTo).send();
 			}
 		}
 		else if(argAmount == 2)
@@ -85,7 +85,7 @@ public class TeleportExec extends FPCommand
 			}
 			//TODO: Check Request default setting
 			//TODO: Check if one person is yourself, redirect to /tp or /tph.
-			sender.feedback("feedback.command.exec.otherToOther").a(playerToTp.getName()).a(playerTpTo.getName()).send();
+			sender.feedback("feedback.command.exec.otherToOther").a(playerToTp).a(playerTpTo).send();
 		}
 		else
 		{

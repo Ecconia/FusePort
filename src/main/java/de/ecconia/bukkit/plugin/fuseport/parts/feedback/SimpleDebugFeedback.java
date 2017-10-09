@@ -78,4 +78,14 @@ public class SimpleDebugFeedback extends Feedback
 		
 		return this;
 	}
+	
+	@Override
+	public Feedback a(FPPlayer player)
+	{
+		addSeperator();
+		
+		feedback += ChatColor.GOLD + player.getName() + ChatColor.GRAY;
+		
+		return this;
+	}
 }
