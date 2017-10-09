@@ -3,7 +3,7 @@ package de.ecconia.bukkit.plugin.fuseport.parts;
 import de.ecconia.bukkit.plugin.fuseport.FusePortPlugin;
 import de.ecconia.bukkit.plugin.fuseport.parts.feedback.FeedbackCreator;
 import de.ecconia.bukkit.plugin.fuseport.parts.players.PlayerCache;
-import de.ecconia.bukkit.plugin.fuseport.parts.response.RequestPart;
+import de.ecconia.bukkit.plugin.fuseport.parts.request.RequestPart;
 import de.ecconia.bukkit.plugin.fuseport.parts.teleport.Teleporter;
 
 public class PartHolder
