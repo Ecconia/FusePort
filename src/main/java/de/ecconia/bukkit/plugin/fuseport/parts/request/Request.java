@@ -22,4 +22,38 @@ public abstract class Request
 	{
 		return receiver;
 	}
+	
+	//TODO: Add feedback
+	public void abortByTp()
+	{
+		
+	}
+	
+	//TODO: Add feedback
+	public void abortByTph()
+	{
+		
+	}
+	
+	//TODO: Add feedback
+	public void abortBySenderDisconnect()
+	{
+		
+	}
+	
+	//TODO: Add feedback
+	public void abortByReceiverDisconnect()
+	{
+		
+	}
+
+	//TODO: Add feedback
+	public void accept() {
+		
+	}
+
+	//TODO: Add feedback
+	public void deny() {
+		
+	}
 }

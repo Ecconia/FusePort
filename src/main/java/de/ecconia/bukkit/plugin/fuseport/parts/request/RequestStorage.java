@@ -21,7 +21,7 @@ public class RequestStorage
 		receiverRequests.add(request);
 	}
 	
-	public void deleteSenderEntries(FPPlayer sender)
+	public List<Request> deleteSender(FPPlayer sender)
 	{
 		List<Request> requests = requestsBySender.remove(sender);
 		if(requests != null)
@@ -31,15 +31,16 @@ public class RequestStorage
 				requestsByReceiver.get(request.getReceiver()).remove(request);
 			}
 		}
+		return requests;
 	}
 	
-	public void deleteRequestEntries(Request request)
+	public void deleteRequest(Request request)
 	{
 		requestsByReceiver.get(request.getReceiver()).remove(request);
 		requestsBySender.get(request.getSender()).remove(request);
 	}
 	
-	public void deleteReceiverEntries(FPPlayer receiver)
+	public void deleteReceiver(FPPlayer receiver)
 	{
 		List<Request> requests = requestsByReceiver.remove(receiver);
 		if(requests != null)
