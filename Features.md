@@ -20,6 +20,7 @@
 - Command: Accept pending request
 - Command note: If no player is passed to the two commands, we will have to prompt which pending to choose.
 - Each player can only have one request, new request overwrites the old one
+- Make requests last if player is offline
 
 ## I18n & Player feedback:
 - Config: Prefix
@@ -49,6 +50,7 @@
 - Without any argument you will receive help
 - Spam protection
 - Disable playersettings
+- Maybe custom subcommands
 
 ## Default answer setting:
 - Config: Default deny/apply/prompt
