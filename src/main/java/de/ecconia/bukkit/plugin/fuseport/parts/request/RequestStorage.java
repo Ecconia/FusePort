@@ -11,6 +11,7 @@ public class RequestStorage
 {
 	private Map<FPPlayer, List<Request>> requestsBySender = new HashMap<>();
 	private Map<FPPlayer, List<Request>> requestsByReceiver = new HashMap<>();
+	private Map<FPPlayer, Map<FPPlayer, Request>> requestsByReceiverAndSender = new HashMap<>();
 	
 	public void newRequest(Request request)
 	{
@@ -19,6 +20,14 @@ public class RequestStorage
 		
 		List<Request> receiverRequests = getRequestBySender(request.getReceiver());
 		receiverRequests.add(request);
+		
+		Map<FPPlayer, Request> receiverMap = requestsByReceiverAndSender.get(request.getReceiver());
+		if(receiverMap == null)
+		{
+			receiverMap = new HashMap<>();
+			requestsByReceiverAndSender.put(request.getReceiver(), receiverMap);
+		}
+		receiverMap.put(request.getSender(), request);
 	}
 	
 	public List<Request> deleteSender(FPPlayer sender)
@@ -29,6 +38,7 @@ public class RequestStorage
 			for(Request request : requests)
 			{
 				requestsByReceiver.get(request.getReceiver()).remove(request);
+				requestsByReceiverAndSender.get(request.getReceiver()).remove(sender);
 			}
 		}
 		return requests;
@@ -38,6 +48,7 @@ public class RequestStorage
 	{
 		requestsByReceiver.get(request.getReceiver()).remove(request);
 		requestsBySender.get(request.getSender()).remove(request);
+		requestsByReceiverAndSender.get(request.getReceiver()).remove(request.getSender());
 	}
 	
 	public void deleteReceiver(FPPlayer receiver)
@@ -50,6 +61,8 @@ public class RequestStorage
 				requestsBySender.get(request.getSender()).remove(request);
 			}
 		}
+		
+		requestsByReceiverAndSender.remove(receiver);
 	}
 	
 	public List<Request> getRequestBySender(FPPlayer sender)
@@ -72,5 +85,15 @@ public class RequestStorage
 			requestsByReceiver.put(receiver, receiverRequests);
 		}
 		return receiverRequests;
+	}
+	
+	public Request getRequestBySenderAndReceiver(FPPlayer sender, FPPlayer receiver)
+	{
+		Map<FPPlayer, Request> receiverMap = requestsByReceiverAndSender.get(receiver);
+		if(receiverMap == null)
+		{
+			return null;
+		}
+		return receiverMap.get(sender);
 	}
 }
