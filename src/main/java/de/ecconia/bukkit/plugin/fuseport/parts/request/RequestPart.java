@@ -5,6 +5,7 @@ import java.util.List;
 import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 //TODO: Add methods to track all teleportations, to remove requests.
+//TODO: Consider or block tpr to oneself
 public class RequestPart
 {
 	private RequestStorage requests;
@@ -16,7 +17,13 @@ public class RequestPart
 	
 	public void sendTPRequest(FPPlayer from, FPPlayer to)
 	{
-		Request request = new TPRequest(from, to);
+		Request request = null;
+		
+		//TODO: Config: remove old request before or after creating new request (feedback order)
+		if(true)
+		{
+			request = new TPRequest(from, to);
+		}
 		
 		//TODO: Config query
 		if(true)
@@ -33,12 +40,24 @@ public class RequestPart
 			}
 		}
 		
+		//TODO: Config: remove old request before or after creating new request (feedback order)
+//		if(false)
+//		{
+//			request = new TPRequest(from, to);
+//		}
+		
 		requests.newRequest(request);
 	}
 	
 	public void sendTPHRequest(FPPlayer from, FPPlayer to)
 	{
-		Request request = new TPHRequest(from, to);
+		Request request = null;
+		
+		//TODO: Config: remove old request before or after creating new request (feedback order)
+		if(true)
+		{
+			request = new TPRequest(from, to);
+		}
 		
 		//TODO: Config query
 		if(true)
@@ -54,6 +73,12 @@ public class RequestPart
 			}
 		}
 		
+		//TODO: Config: remove old request before or after creating new request (feedback order)
+//		if(false)
+//		{
+//			request = new TPRequest(from, to);
+//		}
+		
 		requests.newRequest(request);
 	}
 	
@@ -62,7 +87,7 @@ public class RequestPart
 		Request request = requests.getRequestBySenderAndReceiver(who, sender);
 		if(request == null)
 		{
-			//TODO: Feedback: No request from that person pending.
+			sender.feedback("feedback.command.exec.nopendingrequestforthatplayer.tpa").a(sender).a(who).send();
 		}
 		else
 		{
@@ -75,7 +100,7 @@ public class RequestPart
 		Request request = requests.getRequestBySenderAndReceiver(who, sender);
 		if(request == null)
 		{
-			//TODO: Feedback: No request from that person pending.
+			sender.feedback("feedback.command.exec.nopendingrequestforthatplayer.tpd").a(sender).a(who).send();
 		}
 		else
 		{
