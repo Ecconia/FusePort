@@ -59,17 +59,7 @@ public class RequestPart
 	
 	public void accept(FPPlayer sender, FPPlayer who)
 	{
-		Request request = null;
-		for(Request receiverRequest : requests.getRequestByReceiver(sender))
-		{
-			//TODO: Map this thing...
-			if(receiverRequest.getSender() == who)
-			{
-				request = receiverRequest;
-				break;
-			}
-		}
-		
+		Request request = requests.getRequestBySenderAndReceiver(who, sender);
 		if(request == null)
 		{
 			//TODO: Feedback: No request from that person pending.
@@ -82,17 +72,7 @@ public class RequestPart
 	
 	public void deny(FPPlayer sender, FPPlayer who)
 	{
-		Request request = null;
-		for(Request receiverRequest : requests.getRequestByReceiver(sender))
-		{
-			//TODO: Map this thing...
-			if(receiverRequest.getSender() == who)
-			{
-				request = receiverRequest;
-				break;
-			}
-		}
-		
+		Request request = requests.getRequestBySenderAndReceiver(who, sender);
 		if(request == null)
 		{
 			//TODO: Feedback: No request from that person pending.
