@@ -1,12 +1,13 @@
 package de.ecconia.bukkit.plugin.fuseport.parts.request;
 
+import de.ecconia.bukkit.plugin.fuseport.parts.PartHolder;
 import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 public class TPRequest extends Request
 {
-	public TPRequest(FPPlayer sender, FPPlayer receiver)
+	public TPRequest(PartHolder parts, FPPlayer sender, FPPlayer receiver)
 	{
-		super(sender, receiver);
+		super(parts, sender, receiver);
 		
 		sender.feedback("notification.request.atSender.create.isTP").a(sender).a(receiver).send();
 		receiver.feedback("notification.request.atReceiver.create.isTP").a(sender).a(receiver).send();
@@ -42,6 +43,7 @@ public class TPRequest extends Request
 	public void accept()
 	{
 		sender.feedback("notification.request.atSender.accept.isTP").a(sender).a(receiver).send();
+		parts.getTeleporter().teleportSenderToPlayer(sender, receiver);
 		receiver.feedback("notification.request.atReceiver.accept.isTP").a(sender).a(receiver).send();
 	}
 

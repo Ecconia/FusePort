@@ -12,6 +12,12 @@ public class Teleporter
 		teleportFPPlayerToFPPlayer(sender, player);
 	}
 	
+	public void teleportPlayerToSender(FPPlayer player, FPPlayer sender)
+	{
+		//TODO: Save Location to history
+		teleportFPPlayerToFPPlayer(player, sender);
+	}
+	
 	private void teleportFPPlayerToFPPlayer(FPPlayer object, FPPlayer target)
 	{
 		object.getMCPlayer().teleport(target.getMCPlayer());
