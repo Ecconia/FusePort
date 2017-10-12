@@ -18,7 +18,7 @@ public class RequestStorage
 		List<Request> senderRequests = getRequestBySender(request.getSender());
 		senderRequests.add(request);
 		
-		List<Request> receiverRequests = getRequestBySender(request.getReceiver());
+		List<Request> receiverRequests = getRequestByReceiver(request.getReceiver());
 		receiverRequests.add(request);
 		
 		Map<FPPlayer, Request> receiverMap = requestsByReceiverAndSender.get(request.getReceiver());
