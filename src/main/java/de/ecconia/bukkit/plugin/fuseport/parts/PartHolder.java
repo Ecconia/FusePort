@@ -18,7 +18,7 @@ public class PartHolder
 		playerCache = new PlayerCache(plugin);
 		feedbackCreator = new FeedbackCreator();
 		teleport = new Teleporter();
-		requestPart = new RequestPart();
+		requestPart = new RequestPart(this);
 	}
 	
 	public FeedbackCreator getFeedbackCreator()
