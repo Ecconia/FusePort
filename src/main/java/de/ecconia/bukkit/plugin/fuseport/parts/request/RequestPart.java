@@ -2,16 +2,19 @@ package de.ecconia.bukkit.plugin.fuseport.parts.request;
 
 import java.util.List;
 
+import de.ecconia.bukkit.plugin.fuseport.parts.PartHolder;
 import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 //TODO: Add methods to track all teleportations, to remove requests.
 //TODO: Consider or block tpr to oneself
 public class RequestPart
 {
+	private PartHolder parts;
 	private RequestStorage requests;
 	
-	public RequestPart()
+	public RequestPart(PartHolder parts)
 	{
+		this.parts = parts;
 		requests = new RequestStorage();
 	}
 	
@@ -22,7 +25,7 @@ public class RequestPart
 		//TODO: Config: remove old request before or after creating new request (feedback order)
 		if(true)
 		{
-			request = new TPRequest(from, to);
+			request = new TPRequest(parts, from, to);
 		}
 		
 		//TODO: Config query
@@ -43,7 +46,7 @@ public class RequestPart
 		//TODO: Config: remove old request before or after creating new request (feedback order)
 //		if(false)
 //		{
-//			request = new TPRequest(from, to);
+//			request = new TPRequest(parts, from, to);
 //		}
 		
 		requests.newRequest(request);
@@ -56,7 +59,7 @@ public class RequestPart
 		//TODO: Config: remove old request before or after creating new request (feedback order)
 		if(true)
 		{
-			request = new TPRequest(from, to);
+			request = new TPRequest(parts, from, to);
 		}
 		
 		//TODO: Config query
@@ -76,7 +79,7 @@ public class RequestPart
 		//TODO: Config: remove old request before or after creating new request (feedback order)
 //		if(false)
 //		{
-//			request = new TPRequest(from, to);
+//			request = new TPRequest(parts, from, to);
 //		}
 		
 		requests.newRequest(request);
