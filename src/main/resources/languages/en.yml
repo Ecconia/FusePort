@@ -1,0 +1,12 @@
+feedback:
+  text: "Well this key doesn't seem to be avalible, please tell your admin to add it: <key>"
+  command:
+    parsing:
+      removedflags: 'You used flags which cannot be used with your command: <flags>'
+    parse:
+      tp:
+        cannotCombineFlags: 'The combination of flags is not possible with this command: <flags>'
+    exec:
+      meToOther:
+        accept: 'You have been teleported to <playerTo>'
+        deny: 'You are not allowed to tp to <playerTo>'
