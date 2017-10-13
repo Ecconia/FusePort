@@ -16,7 +16,7 @@ public class PartHolder
 	public PartHolder(FusePortPlugin plugin)
 	{
 		playerCache = new PlayerCache(plugin);
-		feedbackCreator = new FeedbackCreator();
+		feedbackCreator = new FeedbackCreator(plugin);
 		teleport = new Teleporter();
 		requestPart = new RequestPart(this);
 	}
