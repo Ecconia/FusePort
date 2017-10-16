@@ -114,7 +114,12 @@ public class FeedbackCreator
 		
 		public void print()
 		{
-			print("", true);
+			System.out.println(name + ": " + (value == null ? "" : value));
+			Knot[] childValues = childs.values().toArray(new Knot[0]);
+			for(int i = 0; i < childs.size(); i++)
+			{
+				childValues[i].print("", i == childs.size()-1);
+			}
 		}
 		
 		private void print(String suffix, boolean last)
