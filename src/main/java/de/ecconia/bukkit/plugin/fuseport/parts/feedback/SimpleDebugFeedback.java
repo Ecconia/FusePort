@@ -8,6 +8,9 @@ import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
 public class SimpleDebugFeedback extends Feedback
 {
+	private static final ChatColor HC = ChatColor.GOLD; //Highlight color
+	private static final ChatColor TC = ChatColor.GRAY; //Text color 
+	
 	private String feedback;
 	private boolean firstArg;
 	
@@ -15,7 +18,7 @@ public class SimpleDebugFeedback extends Feedback
 	{
 		super(sender, messageKey);
 		firstArg = true;
-		feedback = "[" + ChatColor.GOLD + "FusePort" + ChatColor.WHITE + "] " + ChatColor.GRAY + messageKey + ChatColor.GRAY + "{";
+		feedback = "[" + HC + "FusePort" + ChatColor.WHITE + "] " + TC + messageKey + "{";
 	}
 	
 	@Override
@@ -38,11 +41,11 @@ public class SimpleDebugFeedback extends Feedback
 	}
 	
 	@Override
-	public Feedback a(String a)
+	public Feedback a(String text)
 	{
 		addSeperator();
 		
-		feedback += "\"" + ChatColor.GOLD + a + ChatColor.GRAY + "\"";
+		feedback += "\"" + HC + text + TC + "\"";
 		
 		return this;
 	}
@@ -60,7 +63,7 @@ public class SimpleDebugFeedback extends Feedback
 			for(int i = 1; i < list.size(); i++)
 			{
 				addSeperator();
-				feedback += ChatColor.GOLD + list.get(i) + ChatColor.GRAY;
+				feedback += HC + list.get(i) + TC;
 			}
 		}
 		
@@ -70,11 +73,11 @@ public class SimpleDebugFeedback extends Feedback
 	}
 
 	@Override
-	public Feedback a(int argAmount)
+	public Feedback a(int number)
 	{
 		addSeperator();
 		
-		feedback += ChatColor.GOLD + String.valueOf(argAmount) + ChatColor.GRAY;
+		feedback += HC + String.valueOf(number) + TC;
 		
 		return this;
 	}
@@ -84,7 +87,7 @@ public class SimpleDebugFeedback extends Feedback
 	{
 		addSeperator();
 		
-		feedback += ChatColor.GOLD + player.getName() + ChatColor.GRAY;
+		feedback += HC + player.getName() + TC;
 		
 		return this;
 	}
