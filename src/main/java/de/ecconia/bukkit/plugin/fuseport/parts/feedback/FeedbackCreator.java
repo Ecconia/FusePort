@@ -64,20 +64,17 @@ public class FeedbackCreator
 	//TODO: add extra attributes to the keys, so that one can even more hack them :P
 	private class Knot
 	{
-		//TODO: Maybe remove, to wait - time will tell
-		private Knot parent;
 		private String name;
 		private String value;
 		private Map<String, Knot> childs = new HashMap<>();
 		
 		public Knot(MemorySection section)
 		{
-			this(null, "langroot", section);
+			this("root", section);
 		}
 		
-		private Knot(Knot parent, String name, MemorySection section)
+		private Knot(String name, MemorySection section)
 		{
-			this.parent = parent;
 			this.name = name;
 			
 			Map<String, Object> kids = section.getValues(false);
@@ -89,7 +86,7 @@ public class FeedbackCreator
 				
 				if(obj instanceof MemorySection)
 				{
-					childs.put(key, new Knot(this, key, (MemorySection) obj));
+					childs.put(key, new Knot(key, (MemorySection) obj));
 				}
 				else if(obj instanceof String)
 				{
@@ -99,39 +96,16 @@ public class FeedbackCreator
 					}
 					else
 					{
-						childs.put(key, new Knot(this, key, (String) obj));
+						childs.put(key, new Knot(key, (String) obj));
 					}
 				}
 			}
 		}
 		
-		private Knot(Knot parent, String name, String value)
+		private Knot(String name, String value)
 		{
-			this.parent = parent;
 			this.name = name;
 			this.value = value;
-		}
-		
-		public void print()
-		{
-			System.out.println(name + ": " + (value == null ? "" : value));
-			Knot[] childValues = childs.values().toArray(new Knot[0]);
-			for(int i = 0; i < childs.size(); i++)
-			{
-				childValues[i].print("", i == childs.size()-1);
-			}
-		}
-		
-		private void print(String suffix, boolean last)
-		{
-			String splitter = last ? "└─" : "├─";
-			System.out.println(suffix + splitter + name + ": " + (value == null ? "" : value));
-			suffix += last ? "  " : "│ ";
-			Knot[] childValues = childs.values().toArray(new Knot[0]);
-			for(int i = 0; i < childs.size(); i++)
-			{
-				childValues[i].print(suffix, i == childs.size()-1);
-			}
 		}
 		
 		public String getMessageFromKey(String key)
@@ -167,6 +141,28 @@ public class FeedbackCreator
 			else
 			{
 				return value;
+			}
+		}
+		
+		public void print()
+		{
+			System.out.println(name + ": " + (value == null ? "" : value));
+			Knot[] childValues = childs.values().toArray(new Knot[0]);
+			for(int i = 0; i < childs.size(); i++)
+			{
+				childValues[i].print("", i == childs.size()-1);
+			}
+		}
+		
+		private void print(String suffix, boolean last)
+		{
+			String splitter = last ? "└─" : "├─";
+			System.out.println(suffix + splitter + name + ": " + (value == null ? "" : value));
+			suffix += last ? "  " : "│ ";
+			Knot[] childValues = childs.values().toArray(new Knot[0]);
+			for(int i = 0; i < childs.size(); i++)
+			{
+				childValues[i].print(suffix, i == childs.size()-1);
 			}
 		}
 	}
