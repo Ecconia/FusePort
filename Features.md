@@ -2,6 +2,17 @@
 
 # Implemented:
 
+## Request System:
+- Command: Deny pending request
+- Command: Accept pending request
+
+## Feedback:
+- Each string has one code "bla.bla.blub"
+- MessageKey tree can have textes for knots, which can be overwritten by lower knots, or leafes
+
+## Commands & Handler:
+- Command: Teleport to player
+
 # TODO:
 
 ## Location Histroy:
@@ -16,31 +27,27 @@
 ## Request System:
 - Config: TTL of requests (Default: 2 minutes)
 - Config: Time until a request will be considered as ignored (For the accept/deny with no argument)
-- Command: Deny pending request
-- Command: Accept pending request
 - Command note: If no player is passed to the two commands, we will have to prompt which pending to choose.
 - Each player can only have one request, new request overwrites the old one
 - Make requests last if player is offline
 
-## I18n & Player feedback:
+## Feedback:
 - Config: Prefix
 - Config: Multilang or single language
 - Config: Primary language
 - Config: Optional auto-formatting
 - Config files: Each language
-- Each string has one code "bla.bla.blub"
 - Each code has set keywords <player1> <playerTo> which will be replaced with information
 - Depending on the complexity of information, adding framework to auto-format chat output (to investigate)
 - Chat on-click (JSON text)
-- MessageKey tree can have textes for knots, which can be overwritten by lower knots, or leafes
 
 ## Levels:
 - Level per player
 - Upper level can direct tp to the lower ones
+- Change Levels to optional groups
 
-## Command handler:
+## Commands & Handler:
 - Config: interactive chat
-- Command: Teleport to player
 - Command: Teleport player to you
 - Command note: '-force' to not send a request, '-request' to only send a request
 - Command note: If permissions/level are/is insufficient, will fallback to sending a request
@@ -66,9 +73,10 @@
 - Abort the teleport by moving
 - Abort the teleport by clicking
 - Teleport to yourself, will align you to the center of the block
+- Block teleports to yourself
 
 # Notes & To investigate:
-- Checks if player online when event get triggered (really?)
+- Checks if player online when event get triggered (really?) -> the only trigger currently is disconnect, "don't care"
 - World filtering for location history (but how?)
 - Auto-formatting for chat feedback (work or?)
 - Exact teleport position (yeah!)
