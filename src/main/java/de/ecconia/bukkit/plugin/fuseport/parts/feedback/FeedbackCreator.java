@@ -1,6 +1,7 @@
 package de.ecconia.bukkit.plugin.fuseport.parts.feedback;
 
 import java.io.File;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,17 +16,27 @@ import org.bukkit.plugin.PluginBase;
 
 import de.ecconia.bukkit.plugin.fuseport.parts.players.FPPlayer;
 
+//TODO: Clean this mess up (sort classes)
 public class FeedbackCreator 
 {
 	private PluginBase plugin;
 	private static final String[] langFiles = {"en"};
 	private Map<String, Knot> languages;
+	private ArgsKnot arguments;
 	
 	public FeedbackCreator(PluginBase plugin)
 	{
 		this.plugin = plugin;
+		loadMessageArguments();
 		saveAllLangFiles();
 		loadLangFiles();
+	}
+	
+	private void loadMessageArguments()
+	{
+		FileConfiguration argFile = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("arguments.yml")));
+		arguments = new ArgsKnot(argFile);
+		arguments.print();
 	}
 	
 	private void saveAllLangFiles()
@@ -60,13 +71,91 @@ public class FeedbackCreator
 		return new SimpleDebugFeedback(sender, messageKey);
 	}
 	
+	private class ArgsKnot
+	{
+		private final String name;
+		private List<String> argumentList;
+		private final Map<String, ArgsKnot> childreen = new HashMap<>();
+		
+		public ArgsKnot(MemorySection section)
+		{
+			this("root", section);
+		}
+		
+		@SuppressWarnings("unchecked")
+		public ArgsKnot(String name, MemorySection section)
+		{
+			this.name = name;
+			
+			Map<String, Object> kids = section.getValues(false);
+			
+			for(Entry<String, Object> element : kids.entrySet())
+			{
+				String key = element.getKey();
+				Object obj = element.getValue();
+				
+				if(obj instanceof MemorySection)
+				{
+					childreen.put(key, new ArgsKnot((MemorySection) obj));
+				}
+				else if(obj instanceof List)
+				{
+					if("args".equals(key))
+					{
+						argumentList = (List<String>) obj;
+					}
+				}
+			}
+		}
+		
+		public void print()
+		{
+			System.out.println(name + ":");
+			if(argumentList != null)
+			{
+				for(String arg : argumentList)
+				{
+					System.out.println("- " + arg);
+				}
+			}
+			//TODO: Get rid of this!
+			@SuppressWarnings("unchecked")
+			Entry<String, ArgsKnot>[] childreenArray = childreen.entrySet().toArray(new Entry[0]);
+			for(int i = 0; i < childreenArray.length; i++)
+			{
+				childreenArray[i].getValue().print(childreenArray[i].getKey(), "", i == childreen.size()-1);
+			}
+		}
+		
+		private void print(String name, String prefix, boolean last)
+		{
+			String splitter = last ? "└─" : "├─";
+			System.out.println(prefix + splitter + name + ":");
+			if(argumentList != null)
+			{
+				for(String arg : argumentList)
+				{
+					System.out.println(prefix + " - " + arg);
+				}
+			}
+			prefix += last ? "  " : "│ ";
+			//TODO: Get rid of this!
+			@SuppressWarnings("unchecked")
+			Entry<String, ArgsKnot>[] childreenArray = childreen.entrySet().toArray(new Entry[0]);
+			for(int i = 0; i < childreenArray.length; i++)
+			{
+				childreenArray[i].getValue().print(childreenArray[i].getKey(), prefix, i == childreen.size()-1);
+			}
+		}
+	}
+	
 	//TODO: extract from this class completly
 	//TODO: add extra attributes to the keys, so that one can even more hack them :P
 	private class Knot
 	{
 		private String name;
 		private String value;
-		private Map<String, Knot> childs = new HashMap<>();
+		private Map<String, Knot> childreen = new HashMap<>();
 		
 		public Knot(MemorySection section)
 		{
@@ -86,7 +175,7 @@ public class FeedbackCreator
 				
 				if(obj instanceof MemorySection)
 				{
-					childs.put(key, new Knot(key, (MemorySection) obj));
+					childreen.put(key, new Knot(key, (MemorySection) obj));
 				}
 				else if(obj instanceof String)
 				{
@@ -96,7 +185,7 @@ public class FeedbackCreator
 					}
 					else
 					{
-						childs.put(key, new Knot(key, (String) obj));
+						childreen.put(key, new Knot(key, (String) obj));
 					}
 				}
 			}
@@ -129,9 +218,9 @@ public class FeedbackCreator
 			}
 			
 			String firstKey = keys.remove(0);
-			if(childs.containsKey(firstKey))
+			if(childreen.containsKey(firstKey))
 			{
-				String ret = childs.get(firstKey).getKey(keys);
+				String ret = childreen.get(firstKey).getKey(keys);
 				if(ret == null)
 				{
 					return value;
@@ -147,22 +236,22 @@ public class FeedbackCreator
 		public void print()
 		{
 			System.out.println(name + ": " + (value == null ? "" : value));
-			Knot[] childValues = childs.values().toArray(new Knot[0]);
-			for(int i = 0; i < childs.size(); i++)
+			Knot[] childValues = childreen.values().toArray(new Knot[0]);
+			for(int i = 0; i < childreen.size(); i++)
 			{
-				childValues[i].print("", i == childs.size()-1);
+				childValues[i].print("", i == childreen.size()-1);
 			}
 		}
 		
-		private void print(String suffix, boolean last)
+		private void print(String prefix, boolean last)
 		{
 			String splitter = last ? "└─" : "├─";
-			System.out.println(suffix + splitter + name + ": " + (value == null ? "" : value));
-			suffix += last ? "  " : "│ ";
-			Knot[] childValues = childs.values().toArray(new Knot[0]);
-			for(int i = 0; i < childs.size(); i++)
+			System.out.println(prefix + splitter + name + ": " + (value == null ? "" : value));
+			prefix += last ? "  " : "│ ";
+			Knot[] childValues = childreen.values().toArray(new Knot[0]);
+			for(int i = 0; i < childreen.size(); i++)
 			{
-				childValues[i].print(suffix, i == childs.size()-1);
+				childValues[i].print(prefix, i == childreen.size()-1);
 			}
 		}
 	}
