@@ -2,84 +2,80 @@
 
 # Implemented:
 
-## Request System:
-- Command: Deny pending request
-- Command: Accept pending request
+## Commands:
+- /tp
+- /tpa - Accept pending request
+- /tpd - Deny pending request
 
 ## Feedback:
-- Each string has one code "bla.bla.blub"
-- MessageKey tree can have textes for knots, which can be overwritten by lower knots, or leafes
+- Each string has one MessageKey "bla.bla.blub"
+- MessageKey-Tree can have values for knots, which can be overwritten by lower knots, or leafes
+- Internal languages will be stored to data-folder if not present and also loaded from the data-folder
 
-## Commands & Handler:
-- Command: Teleport to player
+## Request:
+- Requests will be send when insufficient permissions for teleport
+- /tp requests will overwrite /tph requests and the other way round
+- /tp requests will overwrite other /tp requests
+
+## Rules:
+- Player can set thier default 'answer', and set a default answer for each player.
 
 # TODO:
-
-## Location Histroy:
-- Command: Save current position (suggestion)
-- Command: Back to x latest position
-- Config: White/Blacklist for worlds to save...
-- Config: Amount of locations to store
-- Config: Listen to teleport event
-- Store all teleports caused by FusePort
-- Alternative to worldblocks would be worldfiltering (to investigate)
 
 ## Request System:
 - Config: TTL of requests (Default: 2 minutes)
 - Config: Time until a request will be considered as ignored (For the accept/deny with no argument)
-- Command note: If no player is passed to the two commands, we will have to prompt which pending to choose.
-- Each player can only have one request, new request overwrites the old one
-- Make requests last if player is offline
 
 ## Feedback:
 - Config: Prefix
 - Config: Multilang or single language
 - Config: Primary language
 - Config: Optional auto-formatting
-- Config files: Each language
 - Each code has set keywords <player1> <playerTo> which will be replaced with information
 - Depending on the complexity of information, adding framework to auto-format chat output (to investigate)
-- Chat on-click (JSON text)
+- Chat on-click (JSON text), interactive chat
+
+## Commands:
+- Config: Allow to change all command names (except /fuseport), maybe even subcommands
+- /tpb - Back to last position(s) [see ##Location History]
+- /tph - Teleport player to you
+- /tpp - Teleport to position
+- ^Allow relative positions
+- All upper teleports by a third person
+- Allow the usage of -force/-request in all teleportation commands. Force will only teleport if possible and not send a request. Request will always send a request, even if permissions for a direct teleport are given.
+- All commands should print help on wrong usage
+- Spam protection
+- Permissions for everything
+
+## Location Histroy:
+- Config: White/Blacklist for worlds to save...
+- Config: Amount of locations to store
+- Config: Listen to teleport event
+- Command: Save current position
+- Store all teleports caused by FusePort
+- Filter locations ¿pre-post? calling command (Not alowing specific worlds).
 
 ## Levels:
 - Level per player
 - Upper level can direct tp to the lower ones
 - Change Levels to optional groups
 
-## Commands & Handler:
-- Config: interactive chat
-- Command: Teleport player to you
-- Command note: '-force' to not send a request, '-request' to only send a request
-- Command note: If permissions/level are/is insufficient, will fallback to sending a request
-- Command: Teleport to position
-- Command: Teleport someone else
-- Command note: Positional teleport should support relative positions
-- Without any argument you will receive help
-- Spam protection
-- Disable playersettings
-- Maybe custom subcommands
-
-## Default answer setting:
+## Rules:
 - Config: Default deny/apply/prompt
-- Setting per player and per level
-- Default deny/apply or prompt
-- Additional mode: deny silent (sends pretends to send request)
-
-## Command name system:
-- Config: Overwrites for command names
+- Ignore mode (deny without telling)
 
 ## Teleportation:
 - Config: Time till teleport (Default: off/2sec)
+- Config: Block teleports to yourself
 - Abort the teleport by moving
 - Abort the teleport by clicking
 - Teleport to yourself, will align you to the center of the block
-- Block teleports to yourself
 
 # Notes & To investigate:
-- Checks if player online when event get triggered (really?) -> the only trigger currently is disconnect, "don't care"
-- World filtering for location history (but how?)
-- Auto-formatting for chat feedback (work or?)
-- Exact teleport position (yeah!)
+- Checks if player online when event get triggered -> Check if its canceled!!!
+- World filtering for location history (how?)
+- Auto-formatting for chat feedback (what would a good system be??)
+- Exact teleport position (yes)
 - Player filtering, hide them (API...)
-- World limits (yeah!)
-- Request for all kind of tp's (maybe?)
+- World limits (boundaries)
+- Request for all kind of tp's (later)
