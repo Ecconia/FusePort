@@ -42,7 +42,6 @@ public class TPHRequest extends Request
 	@Override
 	public void accept()
 	{
-		
 		sender.feedback("notification.request.atSender.accept.isTPH").a(sender).a(receiver).send();
 		parts.getTeleporter().teleportPlayerToSender(receiver, sender);
 		receiver.feedback("notification.request.atReceiver.accept.isTPH").a(sender).a(receiver).send();

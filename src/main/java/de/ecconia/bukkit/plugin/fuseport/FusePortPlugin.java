@@ -11,6 +11,7 @@ import de.ecconia.bukkit.plugin.fuseport.parts.PartHolder;
 public class FusePortPlugin extends JavaPlugin
 {
 	private PartHolder partHolder;
+	
 	@Override
 	public void onEnable()
 	{

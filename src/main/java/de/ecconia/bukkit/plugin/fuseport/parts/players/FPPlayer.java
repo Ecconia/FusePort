@@ -42,7 +42,6 @@ public class FPPlayer
 		{
 			feedback("feedback.command.parsing.playernotonline").a(playername).send();
 		}
-		
 		return playerQuery;
 	}
 	

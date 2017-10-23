@@ -16,6 +16,7 @@ public class TeleportExec extends FPCommand
 	public TeleportExec(FusePortPlugin plugin)
 	{
 		super(plugin);
+		
 		Set<String> allowedFlags = new HashSet<>();
 		allowedFlags.add(FLAG_REQUEST);
 		allowedFlags.add(FLAG_DIRECT);

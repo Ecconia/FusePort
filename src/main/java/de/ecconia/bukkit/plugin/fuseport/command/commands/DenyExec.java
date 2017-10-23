@@ -29,5 +29,4 @@ public class DenyExec extends FPCommand
 			sender.feedback("feedback.command.deny.parse.wrongArgs").send();
 		}
 	}
-
 }

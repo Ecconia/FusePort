@@ -29,7 +29,6 @@ public class PlayerCache
 		{
 			player = newPlayer(playername);
 		}
-		
 		return player;
 	}
 	
@@ -44,7 +43,6 @@ public class PlayerCache
 		{
 			player = newPlayer(playername);
 		}
-		
 		return player;
 	}
 	

@@ -39,7 +39,6 @@ public abstract class FPCommand implements CommandExecutor
 		{
 			onCommand(sCommand, player);
 		}
-		
 		return true;
 	}
 	
