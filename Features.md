@@ -9,7 +9,6 @@
 
 ## Feedback:
 - Each string has one MessageKey "bla.bla.blub"
-- MessageKey-Tree can have values for knots, which can be overwritten by lower knots, or leafes
 - Internal languages will be stored to data-folder if not present and also loaded from the data-folder
 
 ## Request:
@@ -34,6 +33,7 @@
 - Each code has set keywords <player1> <playerTo> which will be replaced with information
 - Depending on the complexity of information, adding framework to auto-format chat output (to investigate)
 - Chat on-click (JSON text), interactive chat
+- MessageKey-Tree can have values for knots, which can be overwritten by lower knots, or leafes (move to later, since it turned out to be a bit more complex than intended)
 
 ## Commands:
 - Config: Allow to change all command names (except /fuseport), maybe even subcommands
