@@ -40,7 +40,7 @@ public class FPPlayer
 		//TODO: Maybe move this to the others? Out of player? (Its nice here thou)
 		if(playerQuery == null)
 		{
-			feedback("feedback.command.parsing.playernotonline").a(playername).send();
+			feedback("command.player-not-online").a(playername).send();
 		}
 		return playerQuery;
 	}

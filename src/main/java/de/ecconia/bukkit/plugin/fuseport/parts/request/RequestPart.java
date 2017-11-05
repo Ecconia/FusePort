@@ -90,7 +90,7 @@ public class RequestPart
 		Request request = requests.getRequestBySenderAndReceiver(who, sender);
 		if(request == null)
 		{
-			sender.feedback("feedback.command.exec.nopendingrequestforthatplayer.tpa").a(sender).a(who).send();
+			sender.feedback("no-pending-request.accept").a(sender).a(who).send();
 		}
 		else
 		{
@@ -103,7 +103,7 @@ public class RequestPart
 		Request request = requests.getRequestBySenderAndReceiver(who, sender);
 		if(request == null)
 		{
-			sender.feedback("feedback.command.exec.nopendingrequestforthatplayer.tpd").a(sender).a(who).send();
+			sender.feedback("no-pending-request.deny").a(sender).a(who).send();
 		}
 		else
 		{

@@ -26,7 +26,7 @@ public class AcceptExec extends FPCommand
 		}
 		else
 		{
-			sender.feedback("feedback.command.accept.parse.wrongArgs").send();
+			sender.feedback("commands.tpa.help").send();
 		}
 	}
 }

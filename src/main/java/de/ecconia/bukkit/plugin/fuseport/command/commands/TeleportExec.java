@@ -27,11 +27,11 @@ public class TeleportExec extends FPCommand
 	protected void onCommand(SortedCommand sCommand, FPPlayer sender)
 	{
 		//TODO: remove after tests
-		sender.feedback("feedback.command.parsing.sortedCommand").a(sCommand.toString()).send();
+		//sender.feedback("feedback.command.parsing.sortedCommand").a(sCommand.toString()).send();
 	
 		if(sCommand.isSet(FLAG_REQUEST) && sCommand.isSet(FLAG_DIRECT))
 		{
-			sender.feedback("feedback.command.parse.tp.cannotCombineFlags").a(FLAG_DIRECT).a(FLAG_REQUEST).send();
+			sender.feedback("command.wrong-flag-combination.pair").a(FLAG_DIRECT).a(FLAG_REQUEST).send();
 			return;
 		}
 		
@@ -54,7 +54,7 @@ public class TeleportExec extends FPCommand
 			if(preferredAnswer == RequestAnswer.ACCEPT)
 			{
 				plugin.getPartHolder().getTeleporter().teleportSenderToPlayer(sender, playerTpTo);
-				sender.feedback("feedback.command.exec.meToOther.accept").a(sender).a(playerTpTo).send();
+				sender.feedback("commands.tp.meToOther.accept").a(sender).a(playerTpTo).send();
 			}
 			else if(preferredAnswer == RequestAnswer.PROMPT)
 			{
@@ -63,11 +63,11 @@ public class TeleportExec extends FPCommand
 			}
 			else if(preferredAnswer == RequestAnswer.BLOCK)
 			{
-				sender.feedback("feedback.command.exec.meToOther.deny").a(sender).a(playerTpTo).send();
+				sender.feedback("commands.tp.meToOther.deny").a(sender).a(playerTpTo).send();
 			}
 			else
 			{
-				sender.feedback("feedback.command.exec.meToOther.promt.sendfake").a(sender).a(playerTpTo).send();
+				sender.feedback("commands.tp.meToOther.promt.sendfake").a(sender).a(playerTpTo).send();
 			}
 		}
 		else if(argAmount == 2)
@@ -85,7 +85,7 @@ public class TeleportExec extends FPCommand
 		}
 		else
 		{
-			sender.feedback("feedback.command.exec.tp.help").a(argAmount).send();
+			sender.feedback("command.arg-amount.tp").a(argAmount).send();
 		}
 	}
 }

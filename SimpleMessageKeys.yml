@@ -1,4 +1,9 @@
-# A copy of SimpleMessageKeys for language, no arguments yet.
+# Before a advanced system for feedback-message-keys is created, a simple one should be present.
+# This file will contain all possible message-keys which are possible in this plugin.
+# TODO: Change to advanced message-keys, to get rid of all the different 'tp' kinds.
+# Allows to remove a bunch of redundancy from some language files, and looks more pretty.
+
+# Without arguments:
 
 no-pending-request: #/
   accept: You do not have a pending request you could accept.

@@ -49,7 +49,7 @@ public abstract class FPCommand implements CommandExecutor
 		{
 			return true;
 		}
-		player.feedback("feedback.command.parsing.removedflags").a(removedFlags).send();
+		player.feedback("command.flags-not-allowed").a(removedFlags).send();
 		return false;
 	}
 	

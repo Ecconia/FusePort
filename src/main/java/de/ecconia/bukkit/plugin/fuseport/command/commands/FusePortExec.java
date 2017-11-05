@@ -33,7 +33,7 @@ public class FusePortExec extends FPCommand
 				}
 				else
 				{
-					sender.feedback("feedback.command.fuseport.block.wrongargamount");
+					sender.feedback("command.fuseport.block.wrongargamount");
 				}
 			}
 			else if("accept".equals(command))
@@ -49,7 +49,7 @@ public class FusePortExec extends FPCommand
 				}
 				else
 				{
-					sender.feedback("feedback.command.fuseport.accept.wrongargamount");
+					sender.feedback("command.fuseport.accept.wrongargamount");
 				}
 			}
 			else if("remove".equals(command))
@@ -65,7 +65,7 @@ public class FusePortExec extends FPCommand
 				}
 				else
 				{
-					sender.feedback("feedback.command.fuseport.remove.wrongargamount");
+					sender.feedback("command.fuseport.remove.wrongargamount");
 				}
 			}
 			else if("promt".equals(command))
@@ -81,7 +81,7 @@ public class FusePortExec extends FPCommand
 				}
 				else
 				{
-					sender.feedback("feedback.command.fuseport.promt.wrongargamount");
+					sender.feedback("command.fuseport.promt.wrongargamount");
 				}
 			}
 			else if("default".equals(command))
@@ -107,22 +107,22 @@ public class FusePortExec extends FPCommand
 					}
 					else
 					{
-						sender.feedback("feedback.command.fuseport.default.unknownPreference");
+						sender.feedback("command.fuseport.default.unknownPreference");
 					}
 				}
 				else
 				{
-					sender.feedback("feedback.command.fuseport.default.wrongargamount");
+					sender.feedback("command.fuseport.default.wrongargamount");
 				}
 			}
 			else 
 			{
-				sender.feedback("feedback.command.fuseport.parse.subcommand.notfound").send();
+				sender.feedback("command.fuseport.parse.subcommand.notfound").send();
 			}
 		}
 		else
 		{
-			sender.feedback("feedback.command.fuseport.parse.noargs").send();
+			sender.feedback("command.fuseport.parse.noargs").send();
 		}
 	}
 }

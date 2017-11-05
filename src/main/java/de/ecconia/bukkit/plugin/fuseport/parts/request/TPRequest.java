@@ -8,49 +8,51 @@ public class TPRequest extends Request
 	public TPRequest(PartHolder parts, FPPlayer sender, FPPlayer receiver)
 	{
 		super(parts, sender, receiver);
-		
-		sender.feedback("notification.request.atSender.create.isTP").a(sender).a(receiver).send();
-		receiver.feedback("notification.request.atReceiver.create.isTP").a(sender).a(receiver).send();
+
+		sender.feedback("request.create.sender.tp").a(sender).a(receiver).send();
+		receiver.feedback("request.create.receiver.tp").a(sender).a(receiver).send();
 	}
 
 	@Override
 	public void abortByTp()
 	{
-		sender.feedback("notification.request.atSender.abort.byTP.isTP").a(sender).a(receiver).send();
-		receiver.feedback("notification.request.atReceiver.abort.byTP.isTP").a(sender).a(receiver).send();
+		sender.feedback("request.overwrite.tp.by-tp.sender").a(sender).a(receiver).send();
+		receiver.feedback("request.overwrite.tp.by-tp.receiver").a(sender).a(receiver).send();
 	}
 
 	@Override
 	public void abortByTph()
 	{
-		sender.feedback("notification.request.atSender.abort.byTPH.isTP").a(sender).a(receiver).send();
-		receiver.feedback("notification.request.atReceiver.abort.byTPH.isTP").a(sender).a(receiver).send();
+		sender.feedback("request.overwrite.tp.by-tph.sender").a(sender).a(receiver).send();
+		receiver.feedback("request.overwrite.tp.by-tph.receiver").a(sender).a(receiver).send();
 	}
 
 	@Override
 	public void abortBySenderDisconnect()
 	{
-		receiver.feedback("notification.request.atReceiver.abort.senderleave.isTP").a(sender).a(receiver).send();
+		receiver.feedback("request.leave.sender.tp").a(sender).a(receiver).send();
 	}
 
 	@Override
 	public void abortByReceiverDisconnect()
 	{
-		sender.feedback("notification.request.atSender.abort.receiverleave.isTP").a(sender).a(receiver).send();
+		sender.feedback("request.leave.receiver.tp").a(sender).a(receiver).send();
 	}
 
 	@Override
 	public void accept()
 	{
-		sender.feedback("notification.request.atSender.accept.isTP").a(sender).a(receiver).send();
+		sender.feedback("request.accept.before-tp.tp.sender").a(sender).a(receiver).send();
+		receiver.feedback("request.accept.before-tp.tp.receiver").a(sender).a(receiver).send();
 		parts.getTeleporter().teleportSenderToPlayer(sender, receiver);
-		receiver.feedback("notification.request.atReceiver.accept.isTP").a(sender).a(receiver).send();
+		sender.feedback("request.accept.after-tp.tp.sender").a(sender).a(receiver).send();
+		receiver.feedback("request.accept.after-tp.tp.receiver").a(sender).a(receiver).send();
 	}
 
 	@Override
 	public void deny()
 	{
-		sender.feedback("notification.request.atSender.deny.isTP").a(sender).a(receiver).send();
-		receiver.feedback("notification.request.atReceiver.deny.isTP").a(sender).a(receiver).send();
+		sender.feedback("request.deny.tp.sender").a(sender).a(receiver).send();
+		receiver.feedback("request.deny.tp.receiver").a(sender).a(receiver).send();
 	}
 }
