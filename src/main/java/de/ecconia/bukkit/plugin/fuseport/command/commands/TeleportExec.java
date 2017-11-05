@@ -59,7 +59,6 @@ public class TeleportExec extends FPCommand
 			else if(preferredAnswer == RequestAnswer.PROMPT)
 			{
 				plugin.getPartHolder().getRequestPart().sendTPRequest(sender, playerTpTo);
-				sender.feedback("feedback.command.exec.meToOther.promt.send").a(sender).a(playerTpTo).send();
 			}
 			else if(preferredAnswer == RequestAnswer.BLOCK)
 			{
@@ -69,19 +68,6 @@ public class TeleportExec extends FPCommand
 			{
 				sender.feedback("commands.tp.meToOther.promt.sendfake").a(sender).a(playerTpTo).send();
 			}
-		}
-		else if(argAmount == 2)
-		{
-			//TODO: Check permissions
-			FPPlayer playerToTp = sender.getPlayer(sCommand.getArg(0));
-			FPPlayer playerTpTo = sender.getPlayer(sCommand.getArg(1));
-			if(playerToTp == null || playerTpTo == null)
-			{
-				return;
-			}
-			//TODO: Check Request default setting
-			//TODO: Check if one person is yourself, redirect to /tp or /tph.
-			sender.feedback("feedback.command.exec.otherToOther").a(playerToTp).a(playerTpTo).send();
 		}
 		else
 		{
