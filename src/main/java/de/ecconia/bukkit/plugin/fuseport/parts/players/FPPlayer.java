@@ -25,7 +25,7 @@ public class FPPlayer
 	
 	public Feedback feedback(String messageKey)
 	{
-		return plugin.getPartHolder().getFeedbackCreator().feedbackFromMessage(messageKey, this);
+		return plugin.getPartHolder().getFeedbackCreator().createFeedback(messageKey, this);
 	}
 	
 	public String getName()

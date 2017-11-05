@@ -18,7 +18,7 @@ public class SimpleDebugFeedback extends Feedback
 	{
 		super(sender, messageKey);
 		firstArg = true;
-		feedback = "[" + HC + "FusePort" + ChatColor.WHITE + "] " + TC + messageKey + "{";
+		feedback = "[" + HC + "FusePort" + ChatColor.WHITE + "] " + TC + messageKey + " {";
 	}
 	
 	@Override

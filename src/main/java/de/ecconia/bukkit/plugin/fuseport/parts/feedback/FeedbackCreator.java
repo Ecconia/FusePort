@@ -64,7 +64,7 @@ public class FeedbackCreator
 		}
 	}
 	
-	public Feedback feedbackFromMessage(String messageKey, FPPlayer sender)
+	public Feedback createFeedback(String messageKey, FPPlayer sender)
 	{
 		//TODO: Give real feedback and not some dump
 		messageKey = languages.get("en").getMessageFromKey(messageKey);
