@@ -56,7 +56,7 @@ public class FeedbackCreator
 		{
 			FileConfiguration data = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "languages" + File.separator + lang + ".yml"));
 			
-			TreeElement<String> langTree = new TreeElement<String>(data);
+			TreeElement<String> langTree = new TreeElement<String>(lang, data);
 			langTree.print();
 			languages.put(lang, langTree);
 		}
