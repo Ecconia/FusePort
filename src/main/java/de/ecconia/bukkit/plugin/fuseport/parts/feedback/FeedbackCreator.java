@@ -2,8 +2,6 @@ package de.ecconia.bukkit.plugin.fuseport.parts.feedback;
 
 import java.io.File;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +19,7 @@ public class FeedbackCreator
 {
 	private PluginBase plugin;
 	private static final String[] langFiles = {"en"};
-	private Map<String, Knot> languages;
+	private Map<String, TreeElement<String>> languages;
 	private ArgsKnot arguments;
 	
 	public FeedbackCreator(PluginBase plugin)
@@ -58,7 +56,7 @@ public class FeedbackCreator
 		{
 			FileConfiguration data = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "languages" + File.separator + lang + ".yml"));
 			
-			Knot langTree = new Knot(data);
+			TreeElement<String> langTree = new TreeElement<String>(data);
 			langTree.print();
 			languages.put(lang, langTree);
 		}
@@ -67,7 +65,7 @@ public class FeedbackCreator
 	public Feedback createFeedback(String messageKey, FPPlayer sender)
 	{
 		//TODO: Give real feedback and not some dump
-		messageKey = languages.get("en").getMessageFromKey(messageKey);
+		messageKey = languages.get("en").getKey(messageKey);
 		return new SimpleDebugFeedback(sender, messageKey);
 	}
 	
@@ -145,113 +143,6 @@ public class FeedbackCreator
 			for(int i = 0; i < childreenArray.length; i++)
 			{
 				childreenArray[i].getValue().print(childreenArray[i].getKey(), prefix, i == childreen.size()-1);
-			}
-		}
-	}
-	
-	//TODO: extract from this class completly
-	//TODO: add extra attributes to the keys, so that one can even more hack them :P
-	private class Knot
-	{
-		private String name;
-		private String value;
-		private Map<String, Knot> childreen = new HashMap<>();
-		
-		public Knot(MemorySection section)
-		{
-			this("root", section);
-		}
-		
-		private Knot(String name, MemorySection section)
-		{
-			this.name = name;
-			
-			Map<String, Object> kids = section.getValues(false);
-			
-			for(Entry<String, Object> element : kids.entrySet())
-			{
-				String key = element.getKey();
-				Object obj = element.getValue();
-				
-				if(obj instanceof MemorySection)
-				{
-					childreen.put(key, new Knot(key, (MemorySection) obj));
-				}
-				else if(obj instanceof String)
-				{
-					if("text".equals(key))
-					{
-						value = (String) obj;
-					}
-					else
-					{
-						childreen.put(key, new Knot(key, (String) obj));
-					}
-				}
-			}
-		}
-		
-		private Knot(String name, String value)
-		{
-			this.name = name;
-			this.value = value;
-		}
-		
-		public String getMessageFromKey(String key)
-		{
-			//TODO: Either block or ignore wrong usage... Such as keys: "asdf..asdf" or "" <- these just never happen on correct usage hopefully
-			//TODO: Investigate LinkedList
-			List<String> keys = new ArrayList<>(Arrays.asList(key.split("\\.")));
-			String ret = getKey(keys);
-			if(ret == null)
-			{
-				return key;
-			}
-			return ret;
-		}
-		
-		private String getKey(List<String> keys)
-		{
-			if(keys.size() == 0)
-			{
-				return value;
-			}
-			
-			String firstKey = keys.remove(0);
-			if(childreen.containsKey(firstKey))
-			{
-				String ret = childreen.get(firstKey).getKey(keys);
-				if(ret == null)
-				{
-					return value;
-				}
-				return ret;
-			}
-			else
-			{
-				return value;
-			}
-		}
-		
-		public void print()
-		{
-			System.out.println(name + ": " + (value == null ? "" : value));
-			Knot[] childValues = childreen.values().toArray(new Knot[0]);
-			for(int i = 0; i < childreen.size(); i++)
-			{
-				childValues[i].print("", i == childreen.size()-1);
-			}
-		}
-		
-		private void print(String prefix, boolean last)
-		{
-			String splitter = last ? "└─" : "├─";
-			System.out.println(prefix + splitter + name + ": " + (value == null ? "" : value));
-			prefix += last ? "  " : "│ ";
-			Knot[] childValues = childreen.values().toArray(new Knot[0]);
-			for(int i = 0; i < childreen.size(); i++)
-			{
-				childValues[i].print(prefix, i == childreen.size()-1);
 			}
 		}
 	}
